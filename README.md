@@ -110,5 +110,37 @@ map中的<entry>的数值和<list>以及<set>的一样，可以使任何有效�
              <prop key="01">prop1</prop>
              <prop key="02">prop2</prop>
            </props>
-        </property>  
+        </property> 
+3. 扫描注入
+- 在配置文件中添加context:component-scan标签 <context:component-scan base-package="cn.itcast"/> 其中base-package为需要扫描的包(含子包)。
+- 注:
+1. 在使用组件扫描元素时，AutowiredAnnotationBeanPostProcessor 和CommonAnnotationBeanPostProcessor会隐式地被包括进来。 也就是说，连个组件都会被自动检测并织入 - 所有这一切都不需要在XML中提供任何bean配置元数据。 
+2. 功能介绍
+@Service用于标注业务层组件、
+@Controller用于标注控制层组件（如struts中的action）、
+@Repository用于标注数据访问组件，即DAO组件、
+而@Component泛指组件，当组件不好归类的时候，我们可以使用这个注解进行标注。 
+### 面向切面编程
+#### 代理模式
+- JDK的动态代理必须具备四个条件：
+1. 目标接口
+2. 目标类
+3. 拦截器
+4. 代理类
+- 总结：
+1. 因为利用JDKProxy生成的代理类实现了接口，所以目标类中所有的方法在代理类中都有。
+2. 生成的代理类的所有的方法都拦截了目标类的所有的方法。而拦截器中invoke方法的内容正好就是代理类的各个方法的组成体。
+3. 利用JDKProxy方式必须有接口的存在。
+4. invoke方法中的三个参数可以访问目标类的被调用方法的API、被调用方法的参数、被调用方法的返回类型。
+#### CGLIB做代理
+1. CGlib是一个强大的,高性能,高质量的Code生成类库。它可以在运行期扩展Java类与实现Java接口。
+2. 用CGlib生成代理类是目标类的子类。
+3. 用CGlib生成 代理类不需要接口
+4. 用CGLib生成的代理类重写了父类的各个方法。
+5. 拦截器中的intercept方法内容正好就是代理类中的方法体
+
+
+
+ 
+
 
